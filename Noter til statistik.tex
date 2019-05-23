@@ -1,0 +1,709 @@
+\documentclass{article}
+
+% Import section
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{float}
+
+\usepackage{framed}
+
+% Math import
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+
+\pagestyle{empty}
+\usepackage{setspace}
+
+% Code snippet related
+
+\usepackage{listings}
+
+% Litterature list related
+\usepackage{biblatex}
+
+
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+% Formatting of links
+\hypersetup{
+	colorlinks,
+	linkcolor={black!50!black},
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black}
+}
+
+% Formatting listings
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+
+\lstset{style=mystyle}
+
+% Remove "New paragraph" indentation
+
+\setlength{\parindent}{0cm} 
+
+% Macro section
+
+% Figure related
+
+\newcommand{\frontpic}[1]{\begin{figure}[h!]
+		\centering
+		\includegraphics[width=\linewidth]{#1}
+		\label{fig:math}
+\end{figure}}
+
+% Formatting and section related
+\newcommand{\mellemrum}{\vspace{2 ex}}
+\newcommand{\lb}{\linebreak}
+\newcommand{\centersection}[1]{\begin{center}
+		\large \textbf{#1}
+\end{center}}
+\renewcommand{\mark}[1]{\textit{\textbf{#1}}}
+
+% Picture section related
+
+\newcommand{\pic}[3]{\begin{figure}[H]
+		\centering
+		\includegraphics[width=#3]{#1}
+		
+		\caption{#2}
+\end{figure}}
+
+% Math section related
+
+% Formatting related
+\newcommand{\cent}[1]{ \mellemrum \begin{center} #1\end{center} \mellemrum }
+\newcommand{\centL}[1]{ \mellemrum \vspace{-20 px} \begin{center} $#1$\end{center} \mellemrum }
+\newcommand{\mAlign}[1]{\begin{align*}#1\end{align*}}
+\newcommand{\matn}[1]{\begin{gather}#1\end{gather}}
+\newcommand{\mat}[1]{\begin{gather*}#1\end{gather*}}
+\newcommand{\op}[1]{\operatorname{#1}}
+
+% Case related
+
+\newcommand{\stack}[1]{
+	\begin{cases}
+		#1
+	\end{cases}}
+
+% Summation macros
+
+\newcommand{\summation}[2]{\sum\limits_{#1}^{#2}}
+
+% Parenthesis related
+
+\newcommand{\parenthesis}[1]{\ensuremath{\left( #1 \right)}}
+
+% Dynamic matrix macros with args
+\newcommand{\afb}[3]{\ensuremath{_#1 \textbf{#2}_#3}}
+\newcommand{\vek}[3]{\ensuremath{\begin{bmatrix} #1\\ #2\\ #3\end{bmatrix}}}
+\newcommand{\vekt}[2]{\ensuremath{\begin{bmatrix} #1\\ #2\end{bmatrix}}}
+\newcommand{\mediumMatrix}[9]{\ensuremath{
+		\begin{bmatrix}
+			#1 & #2 & #3 \\
+			#4 & #5 & #6 \\
+			#7 & #8 & #9
+\end{bmatrix}}}
+\newcommand{\smallMatrix}[4]{\ensuremath{\begin{bmatrix}
+			#1 & #2 \\
+			#3 & #4
+\end{bmatrix}}}
+% Define lowerCase script letters
+\newcommand{\script}[1]{\mathpzc{#1}}
+
+% Define upperCase script letters - Blackboard C, blackboard R etc.
+\newcommand{\doubleR}{\mathbb{R}}
+\newcommand{\doubleC}{\mathbb{C}}
+
+% Symbols
+
+\renewcommand{\Tilde}{\char`\~}
+
+% Meta info
+\renewcommand{\contentsname}{Indholdsfortegnelse}
+\title{Statistik \\ \large noter og formelsamling}
+
+\author{Martin Hansen}
+
+\begin{document}
+	
+	% Frontpage
+	\maketitle
+	\frontpic{probandstat.png}
+	
+	\pagebreak
+	% Table of contents
+	\tableofcontents
+	
+	\pagebreak
+	
+	% Introductive section
+	\section{Indledning}
+	
+	
+	\section{Statistik på det gymnasielle plan}
+	
+	Denne sektion omhandler de emner der findes på gymnasialt plan hvilket omfatter hyppigheder og observationer samt frekvens, kummuluerede frekvenser, varians og spredning. Der gås ikke i detaljer da dette bliver betragtet som de fundamentale elementer i den deskriptive kategori indenfor matematikkens domæne. Der skelnes ikke mellem population og \textit{stikprøve} i denne sektion da eksempler kun vil omhandle populationer af begrænset størrelse.
+	
+	\subsection{Notations liste for denne sektion}
+	
+	
+	\subsection{Observation og hyppighed}
+	
+	Observation og hyppighed beskriver henholdsvis de egenskaber man vil observere på en mængde af objekter  og antallet af forekomster af de forskellige observationer betegner vi som hyppigheden af de observerede data. Vi lader $X$ betegne et datasæt bestående af de enkelte observationer vi ønsker at underkaste en nærmere statitistisk undersøgelse og $ n $ er så antallet af elemeneter i $ X $. $H$ er så summen af alle elementer i $X$:
+	
+	\mAlign{X &=  \{x_0, \dots , x_n\} \\
+		H &= \summation{i = 0}{\infty} x_i}
+	
+	Normalt vil man søge at inddele de forskellige observationer og angive hyppigheden af hver enkelt observation således at de enkelte hyppigheder er summen af alle forekomster af de enkelte observationer:
+	
+	\cent{$ h_i = \summation{i=j}{k} x_i, \quad x_i = x_{i +1 } = \dots = \dots = x_k, \quad x_i\in X $}
+	
+	Vi kan så lade $ \script{H} $ betegne mængden af hyppigheder ordnet efter observationernes størrelse:
+	
+	\cent{$ \script{H} = \{ h_0,\dots,h_k \} $}
+	
+	Det står dog selvfølgelig klart, at efter denne sortering må vi lade $\script{X}$ betegne et nyt sæt der indeholder elementer fra $X$, udvalgt på sådan en måde at alle elementer i sættet $\script{X}$ er forskellige fra hinanden:
+	
+	\cent{$ \script{X} = \{ x_0,\dots,x_k \} \quad , \quad x_0 \neq x_1, \dots = x_k \quad , \quad x_i \in X $}
+	
+	\subsection{Middelværdi og frekvens}
+	
+	Gennemsnittet, eller middelværdien, for alle elementerne i $X$ kan så beregnes ved:
+	
+	
+	\mAlign{\op{Mean}(X) = \bar{x} = \frac{1}{n}H = \frac{1}{n} \summation{i = 0}{\infty} x_i}
+	
+	\cent{$ f_{h_i} = \frac{1}{H} h_i $}
+	
+	
+	\subsection{Kvartilsæt}
+	
+	Hvis antallet af elementer i $X$ er ulige:
+	
+	\cent{$ Q_2 = x_{\frac{n+1}{2}} $}
+	
+	ellers:
+	
+	\cent{$ Q_2 = \frac{1}{2}(x_{\frac{n}{2}} + x_{\frac{n}{2} + 1}) $}
+	
+	\subsection{Varians og spredning}
+	
+	Varians og spredning fortæller noget om fordelingen i et sæt $ X $ i forhold til en middelværdi $\tilde{x}$:
+	
+	\mAlign{\sigma^2(X) &= \summation{i = 1}{n} \frac{1}{H} (x_i-\tilde{x})^2 &\quad , &\quad x \in X\\
+		\sigma &= \sqrt{var(X)} &\quad , &\quad x \in X}
+	
+	
+	Spredningen beskriver den gennemsnitlige afstand til middelværdien $ \tilde{x} $ for alle $ x \in X$.
+	
+	\section{Statistik - Ikke-gymnasialt niveau}
+	
+	I denne sektion udvides de allerede introducerede begreber og detaljegraden vil øges i takt med problemernes kompleksitet. Her er det vigtigt at notere, at vi skelner mellem population og stikprøve hvilket kan medføre ændringer i allerede defineret notation\footnote{Dette vil dog introduceres og forklares når dette indføres.}. \\
+	Indholdet vil primært være baseret på følgende kildemateriale: \textit{DTU eNotes, url: \href{https://02402.compute.dtu.dk}{eNotes - Introduction to statistics}}.
+	
+	\subsection{Population og stikprøve}
+	
+	I forrige sektion behandlede vi typisk observationssæt af begrænsede størrelser hvorved der ikke blev skelnet mellem population og stikprøve. I denne sektion vil vi dog afvige fra denne procedure og som konsekvens deraf, bliver vi også nød til at overveje hvilken forandringer dette må have for os. \\
+	En af de første ting vi må spørge os selv, er, om gennemsnittet for en stikprøve vil være den samme for en hel population. Det er klart at middelværdien for en stikprøve må afvige noget fra populationens middelværdi, og det vil også have nogle konsekvenser i forbindelse med udregning af varians og spredning, hvorved vi bliver nød til at ændre lidt på definitionerne for disse.  
+	
+	\subsection{Oversigt over notation}
+	
+	Som implicit beskrevet før, vil vi lige gennemgå kort de nye notationer og kort opridse grundlaget for disse ændringer.\\
+	
+	Vi lader her $X$ betegne stikprøvens observationssæt:
+	
+	\cent{$ X = \{x_0,\dots, x_n \} $}
+	
+	Vi vil her betegne middeltallet for $X$ med den velkendte notation $\bar{x}$, men indføre et nyt symbol for middelværdien for en hel population som stikprøven er udtrukket fra:
+	
+	\cent{$ \mu = \op{Mean}(P_X) $}
+	
+	hvor vi betegner $P_X$ som alle observationer fra den population $X$ er udtrukket fra.
+	
+	Denne gang udelader vi dog brugen af hyppighed og foretager beregninger direkte på $X$. 
+	\pagebreak
+	% Document content
+	
+	\subsection{Stikprøver og population}
+	
+	Denne sektion indeholder formler for varians og spredning for $n$ udførte eksperimenter. For tilfældige variabler ser formlerne noget anderledes ud og kan findes i de næste par sektioner der omhandler tilfældige variabler.
+	\subsubsection{Varians og spredning}
+	
+	\cent{$ s^2 = \frac{1}{n-1} \summation{i=1}{n} (x_i - \bar{x})^2 $}
+	
+	\cent{$ s = \sqrt{\frac{1}{n-1} \summation{i=1}{n} (x_i - \bar{x})^2}$}
+	
+	\subsubsection{Variations koeffecienten}
+	
+	\cent{$ V = \frac{s}{\bar{x}} $}
+	
+	\subsubsection{ko-varians og ko-relation}
+	
+	\cent{$ s_{xy} = \frac{1}{n-1} \summation{i = 1}{n} (x_i-\bar{x}) (y_i-\bar{y}) $}
+	\cent{$ r = \frac{1}{n-1} \summation{i = 1}{n} (\frac{x_i-\bar{x}}{s_x}) (\frac{y_i-\bar{y}}{s_y}) $}
+	
+	\subsection{Diskrete stokastiske variabler}
+	
+	Vi kan opdele en diskret tilfældig variabel i et sæt af mulige udkomme $ \script{X} $ og et sæt af observationer $ X $. De to sæt repræsentere her henholdsvis værdier før og efter et hændelse er forekommet. Sandsynligheden, som betegnes med $P$ i denne sektion, for at en observeret værdi antager lige præcis et specifikt element i $ \script{X} $, er så betinget af en eller anden form for sandsynlighedsfunktion $f$. Sandsynligheden kan så gives ved:
+	
+	\cent{$P : \script{X} \mapsto f(\script{X}), \quad f(\script{X}) \in X$}
+	
+	hvor vi betegner elementerne i  $\script{X}$ og $ X $ ved:
+	
+	\cent{$ \script{X} = \{\script{x}_1,\dots,\script{x}_n\} $ \\ 
+	$ X = \{x_1,\dots,x_n\} $}
+	
+	Fordelingen kan enten betegnes som diskret eller kontinuert, alt afhængig af karakteren af udkommet. Vi snakker også om \mark{begrænsede} og \mark{ubegrænsede} fordelinger. Vi opridser kort forklaringerne:
+	\begin{itemize}
+		\item Et sæt af udkomme $ X $ betegnes som diskrete hvis de repræsentere skarpt adskilte værdier der f.eks. er uafhængige af tid. Det kan være observationer af et terningskast eller udtræk af et tilfældigt kort ud af en bunke på 52.
+		\item Hvis det udkomme man vil observere ikke har skarpt adskilte grænser, men består af en uendelig mængde af mulige udkomme, så er udkommet kontinuert. Det kan være sandsynligheder inden for temperatur målinger hvor temperaturen kan antage en uendelig mængde af værdier mellem to fastsatte interval punkter. 
+	\end{itemize}
+	
+	\subsection{Diskrete fordelingsfunktioner - \textit{pdf} og \textit{cdf}}
+	
+	Vi siger, at et sæt af diskrete variabler er fordelt med hensyn til eller anden fordeling $ P(\script{X}) $, alt afhængig af om variablen er diskret eller kontinuert. Disse funktioner kendes som tæthedsfunktionen \textit{pdf} og fordelingsfunktionen \textit{cdf}\footnote{\textit{pdf} = probability density function, \textit{cdf} = cummulated density function}.
+	
+	\subsubsection{Tæthedsfunktionen for diskrete tilfældige variabler \textit{pdf}}
+	
+	Tæthedsfunktionen for diskrete variabler angiver sandsynligheden for at en observation antager en værdi $\script{x} \in X$. Denne funktion noteres ved:
+	
+	\cent{$ f(\script{x}) = P(X = \script{x}) $}
+	
+	hvor $f$ ikke kan være mindre end 0:
+	
+	\cent{$ f(\script{x}) \geq 0, \quad \script{x} \in X$}
+	
+	\subsubsection{Fordelingsfunktionen for diskrete variabler \textit{cdf}}
+	
+	Sandsynligheden for at en observation antager en værdi $\script{x}_i$ eller lavere kan udtrykkes ved:
+	
+	\cent{$ \summation{i = 1}{k} f(\script{x}_i) = P(\script{X} \leq \script{x}_i), \quad i \leq k \leq n $}
+	
+	Sandsynligheden for at et udkomme er indenfor et givent interval $[a,b]$ kan så gives ved:
+	
+	
+	\cent{$ P(a \leq \script{X} \leq b) = F(b) - F(a), \quad (a,b)\in \script{X}^2 $}
+	
+	\subsection{Middelværdier, varians og spredning for stokastiske variabler}
+	\subsubsection{Middelværdi}
+	
+	\cent{$ \mu = E(\script{X}) = \summation{i=1}{n} \script{x}_i f(\script{x}_i) $}
+	
+	\subsubsection{Varians}
+	
+	\cent{$ \sigma^2 = V(\script{X}) = E[(\script{X} - \mu)^2] = \summation{i=1}{n} (\script{x}_i - \mu)^2 f(\script{x}_i) $}
+	
+	\subsubsection{Spredning}
+	
+	\cent{$ \sigma = \sqrt{V(\script{X})} $}
+	
+	\subsection{Diskrete Sandsynlighedsfordelinger}
+	
+	I denne delsektion kommer vi nærmere ind på de forskellige sandsynlighedsfordelinger. En stokastisk variabel kan være fordelt med hensyn til nogle forskellige fordelinger. I de diskrete tilfælde kommer vi nærmere ind på de binomiale, hypergeometriske og Poisson fordelinger og hvordan middelværdi og varians beregnes i forhold til disse. 
+	
+	\subsubsection{Den binomiale fordeling}
+	
+	Den binomiale fordeling beskriver sandsynligheden for at få et bestemt antal observationer efter $n$ hændelser. For en stokastisk variabel der er binomialt fordelt:
+	
+	\cent{$ \script{X} \sim B(n,p) $}
+	
+	kan sandsynligheden for at opnå $x$ antal bestemte succeser gives ved:
+	
+	\cent{$ P(\script{X} = x) = \binom{n}{x} p^x (1-p)^{n-x} $}
+	
+	hvor $n$ er antallet af simulationer, $x$ er antallet af successer og $p$ er sandsynligheden for hvert enkelt udkomme. $\binom{n}{x}$ er så antallet af måder man kan udvælge $x$ elementer ud af en mængde på  $n$ elementer:
+	
+	\cent{$ \binom{n}{x} = \frac{n!}{x!(n-x)!} $}
+	
+	\subsubsection{Middelværdi og varians}
+	
+	Middelværdien i forhold til den binominale fordeling kan så gives ved:
+	
+	\cent{$ \mu = np $}
+	
+	og varians:
+	
+	\cent{$ \sigma^2 = np(1-p) $}
+	
+	
+	\subsubsection{Hypergeometriske fordeling}
+	
+	Lad $\script{X}$ være hypergeometrisk fordelt:
+	
+	\cent{$ \script{X} \sim H(n,a,N) $}
+	
+	hvor $n$ er antallet af træk\footnote{Som der ifølge eNoterne betegnes som "Without replacement", dvs. at der kun er en observation pr. mulige udkomme.}, $a$ er antallet af successer ud af den $N$ store population.\\
+	\\
+	Den hypergeometriske fordelingsfunktion er så givet ved:
+	
+	\cent{$ f(x;n,a,N) = P(X = \script{x}) = \frac{\binom{a}{\script{x}} \binom{N-a}{n-\script{x}}}{\binom{N}{n}} $}
+	
+	
+	
+	\subsubsection{Middelværdi og varians}
+	
+	Middelværdi og varians er ligeledes givet ved:
+	
+	\cent{$ \mu = \frac{na}{N} $}
+	\cent{$ \sigma^2 = n \frac{a(N-a)(N-n)}{N^2(N-1)} $}
+	
+	\subsubsection{Eksempel scenarie}
+	
+	Lotteri er et godt eksempel på tilfældige hypergeometriske fordelte variabler. Man har en krukke fuld af numre fra 1-90, og man sidder med et lap papir hvor der står 8 numre. Hvad er sandsynligheden for at trække alle disse numrer i et bestemt antal træk? Til info
+	
+	\subsubsection{Eksempler i \textit{R}}
+	
+	Plotte sandsynligheder:
+	
+	\begin{lstlisting}[language=R]
+	a <- 8
+	N <- 90
+	n <-2
+	plot(0:8,dhyper(x=0:8,m=a,n=N-a,k=n),type="h")	\end{lstlisting}
+	
+	\pic{HyperPlot.jpg}{Plot af ovenstående eksempel}{200px}
+	
+	\subsection{Poisson fordeling}
+	
+	Poisson fordelingen er givet ved:
+	
+	\cent{$ f(\script{x};\lambda)= \frac{\lambda^{\script{x}}}{\script{x}!} e^{-\lambda} $}
+	
+	hvor $x$ er antallet af hændelser (successer) og $\lambda$ er antallet af hændelser pr. tid (intensiteten).\\
+	
+	Hændelsen pr. tidsenhed kan skaleres op i intervaller:
+	
+	\cent{$ \lambda^{minutter} = \frac{\lambda^{time}}{60 minutter}  $}
+	
+	\subsubsection{Middelværdi og varians}	
+	Middelværdi og varians er ligeledes givet ved:
+	
+	\cent{$\mu = \lambda$}
+	
+	\cent{$\sigma^2 =\lambda $}
+	
+	\subsection{Kontinuerte stokastiske variabler}
+	
+	\subsection{Tæthedsfunktionen for kontinuerte variabler}
+	
+	Tæthedsfunktionen for kontinuerte variabler er en ikke-negativ funktion for alle mulige udkomme $\script{x}$:
+	
+	\cent{$f(x)\geq 0, \quad x \in \doubleR$}
+
+	Arealet af denne under grafen i intervallet $[-\infty,\infty]$ er:
+	
+	\cent{$$ \int_{-\infty}^{\infty} f(\script{x})d\script{x} = 1 $$}
+	
+	Den returnerer sandsynligheden for at udkommet $\script{x}$ er i intervallet $[a,b]$:
+	
+	\cent{$$P(a < X < b) = \int_{a}^{b}f(\script{x})d\script{x}$$}
+	
+	Sandsynligheden for at en tilfældig variabel realiserer et bestemt punkt er lig 0:
+	
+	\cent{$$ P(x < X < x) = \int_{\script{x}}^{\script{x}}f(u)du = 0 $$}
+	
+	\subsection{Fordelingsfunktionen for kontinuerte variabler}
+	
+	\cent{$$ F(x) = P(X \leq \script{x}) = \int_{-\infty}^{\script{x}} f(u)du $$}
+	
+	\subsection{Middelværdi og varians}
+	
+	Middelværdi:
+	
+	\cent{$$ \mu = \op{E}(x) = \int_{-\infty}^{\infty} \script{x}f(\script{x})d\script{x} $$}
+	
+	Varians:
+	
+	\cent{$$ \sigma^2 = \op{E}[(X-\script{x})^2] $$}
+	
+	\subsection{Kontinuerte fordelinger}
+	
+	\subsubsection{Den uniforme fordeling}
+	
+	Lad $x$ være uniformt fordelt:
+	
+	\cent{$ \script{x} \sim U(\alpha,\beta)$}
+	
+	hvor $\alpha$ og $\beta$ er intervallet af de mulige observationer.\\\\
+	
+	Tæthedsfunktionen \textit{pdf} for den uniforme fordelt variable $X$ er givet ved:
+	
+	\cent{$ f(\script{x}) = \stack{\frac{1}{\beta - \alpha} & \quad \text{for } \script{x} \in [\alpha,\beta] \\ 0 & \quad \text{for } \script{x} \notin [\alpha,\beta]} $}
+	
+	Og fordelingsfunktionen \textit{cdf} ligeledes ved:
+	
+	\cent{$ F(\script{x}) = \stack{ 0 & \quad \text{for } \script{x} < \alpha \\ \frac{\script{x} - \alpha}{\beta - \alpha} & \quad \text{for } \script{x} \in [\alpha,\beta[ \\ 0 & \quad \text{for } \script{x} \geq \beta} $}
+	
+	Funktionerne kan illustreres ved:
+	
+	\pic{UniformPlot.jpg}{Tætheds- og fordelings funktionerne for den uniforme fordeling }{200px}
+	
+	Middelværdien er så givet ved:
+	
+	\cent{$ \mu = \frac{1}{2} (\alpha + \beta) $}
+	
+	Variensen er ligeledes givet ved:
+	
+	\cent{$ \sigma^2 = \frac{1}{12} (\beta-\alpha)^2 $}
+	
+	\subsubsection{Normalfordelingen}
+	
+	Lad $X$ være normaltfordelt:
+	
+	\cent{$ X \sim N(\mu,\sigma^2) $}
+	
+	hvor $\mu$ og $\sigma^2$ er hhv. middelværdi og varians for $X$.\\\\
+	
+	Tæthedsfunktionen(\textit{pdf})  for normalfordelingen:
+	
+	\cent{$ f(x;\mu,\sigma) = \frac{1}{\sigma \sqrt{2\pi}}e^{-\frac{\script{(x-\mu)^2}}{2\sigma^2}} $}
+	
+	og fordelingsfunktionen (\textit{cdf}):
+	
+	\cent{$$ F(x) = \frac{1}{\sigma \sqrt{2\pi}} \int_{-\infty}^{\script{x}} e^{-\frac{\script{(u-\mu)^2}}{2\sigma^2}} du $$}
+	
+	Middelværdi og varians giver ikke rigtig mening at opskrive da de indgår som parametre til tæthedsfunktionen.
+	
+	\subsubsection*{Eksempel i \textit{R}}
+	
+	\begin{lstlisting}[language=R]
+		muX <- 0
+		sigmaX <- 1
+		xSeq <- seq(-6,6,bt=0.1)
+		pdfX <- 1/sigmaX*sqrt(2*pi) * exp(-(xSeq-muX)^2/(2*sigmaX^2))
+		plot(xSeq,pdfX,type="1", xlab="$x$",ylab="f(x)")\end{lstlisting}
+	
+	\pic{NormalPlot.jpg}{Plot kurve for tæthedsfunktionen}{200px}
+	
+	\subsubsection{Linear kombination af stokastiske variabler}
+	
+	Stokastiske variabler er i virkeligheden $n$ dimensionelle vektorer som deler nogle af de samme egenskaber som sin geometriske varianter. Lad $\script{X}$ betegne en mængde af $n$ "\textit{lineært uafhængige}" normalfordelte stokastiske variabler, så vil enhver linear kombination af disse også være normalfordelt.
+	
+	\subsubsection{Standard normal fordeling}
+	
+	\cent{$ Z \sim N(0,1) $}
+	
+	hvor $Z$ er den standardiserede normal fordelte variabel.
+	
+	\subsubsection{Transformation af normal fordelt variable}
+	
+	\cent{$ Z = \frac{X-\mu}{\sigma} $}
+	
+	\subsubsection{Eksempel i \textit{R}}
+	
+	\begin{lstlisting}[language=R]
+		## Do it for a sequence of x values
+		xSeq <- c(-3,-2,1,0,1,2,3)
+		## The pdf
+		dnorm(xSeq, mean=0, sd=1)
+		[1] 0.004432 0.053991 0.241971 0.398942 0.241971 0.053991 0.004432
+		## The cdf
+		pnorm(xSeq, mean=0, sd=1)
+		[1] 0.00135 0.02275 0.84134 0.50000 0.84134 0.97725 0.99865
+		## The quantiles
+		qnorm(c(0.01,0.025,0.05,0.5,0.95,0.975,0.99), mean=0, sd=1)
+		[1] -2.326 -1.960 -1.645 0.000 1.645 1.960 2.326
+		## Generate random normal distributed realizations
+		rnorm(n=10, mean=0, sd=1)
+		[1] 0.59716 -0.27049 1.28617 0.06501 -3.13349 -1.09420 -1.16043
+		[8] 1.04028 0.42958 0.60432
+		## Calculate the probability that that the outcome of X is between a and b
+		a <- 0.2
+		b <- 0.8
+		pnorm(b) - pnorm(a)
+		[1] 0.2089
+		## See more details by running "?dnorm" \end{lstlisting}
+	
+	\subsubsection{Log-normal fordeling}
+	
+	\cent{$X \sim LN(\alpha,\beta^2)$}
+	
+	hvor $\alpha$ er middelværdi og $\beta^2$ er variansen.\\\\
+	
+	Tæthedsfunktionen for log-normalt fordelte stokastiske variabler:
+	
+	\cent{$ f(\script{x}) = \frac{1}{\script{x}\sqrt{2\pi}\beta}e^{-\frac{\parenthesis{\op{ln}(\script{x}) - \alpha}^2}{2\beta^2}} $}
+	
+	Middelværdi og varians:
+	
+	\cent{$ \mu = e^{\alpha + \beta^2 / 2} $ \\
+			$ \sigma^2 = e^{2\alpha +\beta^2 }(e^{\beta^2}-1) $}
+	
+	\subsubsection{Eksponentiel fordeling}
+	
+	Lad $X$ være en eksponentielt fordelt stokastisk variabel:
+	
+	\cent{$ X \sim Exp(\lambda) $}
+	
+	hvor $\lambda$ er det gennemsnitlige antal hændelser pr. enhed. \\\\
+	
+	Tæthedsfunktionen:
+	
+	\cent{$ f(\script{x}) = \stack{\lambda e^{-\lambda \script{x}} & \quad \text{for } \script{x} \geq 0 \\ 0 & \quad \text{for } \script{x} <0} $}
+	
+	Middelværdi og varians:
+	
+	\cent{$ \mu = \frac{1}{\lambda}$ \\
+		 $\sigma^2 = \frac{1}{\lambda^2}$}
+	
+	\subsubsection*{Eksempel i \textit{R}}
+	
+	\begin{lstlisting}[language=R]
+	
+	## Simulate exponential waiting times
+	## The rate parameter: events per time
+	lambda <- 4
+	## Number of realizations
+	n <- 1000
+	## Simulate
+	x <- rexp(n, lambda)
+	## The empirical pdf
+	hist(x, probability=TRUE)
+	## Add the pdf to the plot
+	curve(dexp(xseq,lambda), xname="xseq", add=TRUE, col="red")\end{lstlisting}
+	
+	
+	\subsection{Regler for middelværdi og varians}
+	
+	Lad $\script{Y} = aX +b $, så gælder der i kraft af lineariteten af stokastiske variabler følgende for middelværdi og varians:
+	
+	\cent{$ \op{E}(\script{Y}) = \op{E}(aX+b) = a\op{E}(X) + b $ \\
+				$ \op{V}(\script{Y}) = \op{V}(aX + b) = a^2\op{V}(X) $}
+
+	
+	
+	\section{Fordelinger af stikprøve middelværdier}
+	\subsection{Detaljer om brugen af notation}
+	
+	I denne sektion skelner vi mellem \textit{observerede stikprøver} og \textit{tilfældige stikprøver} vi endnu ikke har observeret. Dette udspringer af vores ønske om, at finde frem til værdier der er repræsentative for hele populationen, typisk de såkaldte parametre som middelværdi, varians og spredning. Parametre kan vi så betegne som enten estimerede eller konkrete, alt afhængig af om de repræsenterer parametre for en stikprøve eller en population. De \textit{observererede stikprøver}, som vi sædvanligvis betegner med små bogstaver, det vil sige, at et sæt af observationer stadig betegnes med $X$, og dens elementer med $\script{x}_1,\dots, \script{x}_n$, betegner et sæt af konkrete observationer vi kan finde middelværdi og spredning på. De stikprøver vi endnu ikke har observeret, og som vi behandler helt generelt som en hver anden stokastisk variabel, beskriver vi med store bogstaver som f.eks. $X_1,\dots, X_n$. Denne distinktion, og dens notation, overfører vi også til beskrivelsen af middelværdi, varians og spredning med nogle få afvigelser i forhold til notation af disse. F.eks. beskriver vi variansen af en tilfældig stikprøve med $S^2$, hvilket vi også anser som en tilfældig variabel i sig selv, og variansen for en observeret stikprøve med $s^2$. \\\\
+	
+	En middelværdi for en stikprøve kan f.eks. også fungerer som en midlertidig esterimeret middelværdi for den population som stikprøven er taget fra. For denne middelværdi benytter vi følgende notation:
+	
+	\cent{$\hat{\mu} = \bar{\script{x}}$} 
+	
+	\subsection{Fordelingen af normaltfordelte middelværdier}
+	
+	Middelværdier for vilkårlige stikprøve ud af en population vil med høj sandsynlighed afvige indbyrdes, og man kan derfor tale om, at disse også kan betragtes som stokastiske variabler. Derfor gælder følgende for en normalt fordelt stokastisk variabel hvis elementer er middelværdier for $n$ antal stikprøver:
+	
+	
+	\centL{$ \bar{X} = \frac{1}{N} \sum_{1}^{n}X_i \sim N\parenthesis{\mu,\frac{\sigma^2}{n}} $}
+	
+	Ovenstående formel kan også retfærdiggøres ud fra kendsgerningen, at stokastiske variabler er lineær uafhængige af hinanden:
+	
+	\centL{$ E(\bar{X}) = \frac{1}{n}\sum_{1}^{n} E(X_i) = \frac{1}{n} \sum_{1}^{n} \mu = \frac{1}{n} n\mu = \mu  $}
+	
+	og:
+	
+	\centL{$ V(\bar{X}) = \frac{1}{n^2} \sum_{1}^{n}V(X_i) = \frac{1}{n^2} \sum_{1}^{n} \sigma^2 = \frac{n}{n^2} \sigma^2 = \frac{\sigma^2}{n} $}
+	
+	Spredningen, samt forskellen mellem middelværdien for stikprøven og populationen, kan så gives ved:
+	
+	\cent{$\sigma_{\bar{X}} = \sigma_{\parenthesis{\bar{X}-\mu}} = \frac{\sigma}{\sqrt{n}} $}
+	
+	Ovenstående kan så beskrives som den egentlige middelværdi for populationen, eller den fejl man begår når man benytter stikprøvens middelværdi.
+	
+	\subsection{Statistik for single-variabel stikprøve}
+	
+	\subsubsection{Fordelingen af den $\sigma$-standardiseret middelværdis stokastiske variabel}
+	
+	\cent{$ Z = \frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \sim N(0,1^2) $}
+	
+	\subsubsection{Fordelingen af den $S$-standardiseret middelværdis stokastiske variabel}
+	
+	\cent{$ Z = \frac{\bar{X} - \mu}{s / \sqrt{n}} \sim t(n-1) $}
+	
+	\subsubsection{Konfidensinterval for en stikprøve}
+	
+	\cent{$ \bar{\script{x}}\pm t_{1-\alpha/2} \cdot \frac{s}{\sqrt{n}} $}
+	
+	hvor $t_{1-\alpha / 2}$ er den $(1-\alpha /2)$ kvartil fra t-fordelingen med $n-1$ frihedsgrader. $s$ og $n$ er så hhv. stikprøvens kendte spredning og størrelse.\\
+	
+	\subsubsection{Eksempel}
+	
+	Vi kan betragte en stikprøve udtaget på et tilfældigt valgt gymnasium, og vi vælger at observere deres højde. De fordeler sig således:
+	
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{llllllllll}
+			168 & 161 & 167 & 179 & 184 & 166 & 198 & 187 & 191 & 179
+		\end{tabular}
+	\caption{Højde på studenter}
+	\end{table}
+	
+	Disse observationer har følgende middelværdi, varians og spredning:
+	
+	\cent{$ \bar{X} = 178, \quad \sigma^2 = 149.11, \quad \sigma = 12.11 $}
+	
+	Da vi ønsker et konfidensinterval indenfor 95% sikkerhed, finder vi sandsynligheden for $T_{1-0.05/2}$ der efter beregning i R giver $2.262$:
+	
+	\cent{$ 2.262 \cdot \frac{12.21}{\sqrt{10}} = 8.74$}
+	
+	Hvilket giver en middelværdi for hele populationen indenfor nedenstående interval:
+	
+	\cent{$\mu = 178 \pm 8.74 = [169.3,186.7]$}
+	
+	\subsection{Central Limit Theorem (CLT)}
+	
+	Vi lader $ \bar{X} $ være en middelværdi for en tilfældigt stikprøve taget fra en population med middelværdi $\mu$ og varians $\sigma^2$. Der gælder så nedenstående for den stokastiske variabel $Z$: 
+	
+	\cent{$ Z = \frac{\bar{X} - \mu}{\sigma / \sqrt{n}} $}
+	
+	som for meget store $n$ tilnærmer sig en standard-normal fordeling $N(0,1^2)$:
+	
+	\cent{$\frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \sim N(0,1^2), \quad n\rightarrow \infty$}
+	
+	
+	\subsubsection*{Eksempel i \textit{R}}
+	
+	\begin{lstlisting}[language=R]
+	## Number of simulated samples
+	k <- 1000
+	## Number of observations in each sample
+	n <- 1
+	## Simulate k samples with n observations
+	## Note, the use of replicate: it repeats the second argument (here k times)
+	Xbar <- replicate(k, runif(n))
+	hist(Xbar, col="blue", main="n=1", xlab="Sample means", xlim=xlim)
+	## Increase the number of observations in each sample
+	## Note, the use of apply here: it takes the mean on the 2nd dimension
+	## (i.e. column) of the matrix returned by replicate
+	n <- 2
+	Xbar <- apply(replicate(k, runif(n)), 2, mean)
+	hist(Xbar, col="blue", main="n=2", xlab="Sample means", xlim=xlim)
+	## Increase the number of observations in each sample
+	n <- 6
+	Xbar <- apply(replicate(k, runif(n)), 2, mean)
+	hist(Xbar, col="blue", main="n=6", xlab="Sample means", xlim=xlim)
+	## Increase the number of observations in each sample
+	n <- 30
+	Xbar <- apply(replicate(k, runif(n)), 2, mean)
+	hist(Xbar, col="blue", main="n=30", xlab="Sample means", xlim=xlim)\end{lstlisting}
+	
+	\pic{CTL}{Illustrering af CTL}{\linewidth}
+\end{document}
