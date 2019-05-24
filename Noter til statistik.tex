@@ -118,6 +118,7 @@
 % Parenthesis related
 
 \newcommand{\parenthesis}[1]{\ensuremath{\left( #1 \right)}}
+\newcommand{\bracket}[1]{\mathopen{}\left[ {#1}_{{}_{}}\,\negthickspace\right]\mathclose{}}
 
 % Dynamic matrix macros with args
 \newcommand{\afb}[3]{\ensuremath{_#1 \textbf{#2}_#3}}
@@ -614,7 +615,7 @@
 	
 	\centL{$ \bar{X} = \frac{1}{N} \sum_{1}^{n}X_i \sim N\parenthesis{\mu,\frac{\sigma^2}{n}} $}
 	
-	Ovenstående formel kan også retfærdiggøres ud fra kendsgerningen, at stokastiske variabler er lineær uafhængige af hinanden:
+	Ovenstående formel kan også retfærdiggøres ud fra kendsgerningen, at stokastiske variabler er lineært uafhængige af hinanden:
 	
 	\centL{$ E(\bar{X}) = \frac{1}{n}\sum_{1}^{n} E(X_i) = \frac{1}{n} \sum_{1}^{n} \mu = \frac{1}{n} n\mu = \mu  $}
 	
@@ -630,6 +631,15 @@
 	
 	\subsection{Statistik for single-variabel stikprøve}
 	
+	Emner der bliver behandlet i denne sektion:
+	
+	\begin{itemize}
+		\item Konfidens intervaller for middelværdier
+		\item Den Centrale Grænseværdi sætning\footnote{CLT = Central Limit Theory}
+		\item Konfidens intervaller for varians og spredning
+		\item Hypotese tests for single-variabel stikprøver
+	\end{itemize}
+	
 	\subsubsection{Fordelingen af den $\sigma$-standardiseret middelværdis stokastiske variabel}
 	
 	\cent{$ Z = \frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \sim N(0,1^2) $}
@@ -638,7 +648,7 @@
 	
 	\cent{$ Z = \frac{\bar{X} - \mu}{s / \sqrt{n}} \sim t(n-1) $}
 	
-	\subsubsection{Konfidensinterval for en stikprøve}
+	\subsubsection{Konfidensinterval for en stikprøve - middelværdi}
 	
 	\cent{$ \bar{\script{x}}\pm t_{1-\alpha/2} \cdot \frac{s}{\sqrt{n}} $}
 	
@@ -706,4 +716,63 @@
 	hist(Xbar, col="blue", main="n=30", xlab="Sample means", xlim=xlim)\end{lstlisting}
 	
 	\pic{CTL}{Illustrering af CTL}{\linewidth}
+	
+	\pagebreak
+	
+	
+	\subsubsection{Konfidens intervaller for varians og spredning}
+	
+	For varians:
+	
+	\cent{$ \bracket{\frac{(n-1)s^2}{\chi_{1-\alpha/2}^2}, \frac{(n-1)s^2}{\chi_{\alpha/2}^2}} $}
+	
+	For spredning:
+	
+	\cent{$ \bracket{\sqrt{\frac{(n-1)s^2}{\chi_{1-\alpha/2}^2}}, \sqrt{\frac{(n-1)s^2}{\chi_{\alpha/2}^2}}} $}
+	
+	\subsubsection{Hypoteset tests for t-fordelte variabler}
+	
+	\begin{enumerate}
+		
+		\item Opstil nulhypotesen $H_0$ eller den alternative (variant $H_1$, og derefter den kritiske værdi $\alpha$:
+		\item Beregn den t-fordelte statistiske værdi $t_{obs}$:
+		
+		\cent{$ t_{obs} = \frac{\bar{\script{x}} - \mu_0}{s/\sqrt{n}} $}
+		
+		\item Beregn p-værdien:
+		
+		\cent{\textit{p}-værdi $ = 2 \cdot P(t > t_{obs}) $}
+		\item Sammenlign p-værdien med den kritiske værdi $\alpha$:
+		
+		Hvis \textit{p}-værdien er mindre end den kritiske grænse $\alpha$ kan nulhypotesen forkastes.
+
+	\end{enumerate}
+
+	\subsection{Statistik for dual-variabel stikprøve}
+	
+	\subsubsection{Hypotese tests med to variabler}
+	
+	\begin{enumerate}
+		\item Opstil nulhypotese $H_0$ og kritisk værdi $\alpha$:
+		
+		\cent{$ H_0 : \mu_0 - \mu_1 = \script{S}_0 $}
+		
+		\item Beregn t-statistisk fordelings værdi:
+		
+		\cent{$ t_{obs} = \frac{(\bar{x}_1 - \bar{x}_2) - \script{S}_0}{\sqrt{s_1^2/n_1 + s_2^2/n_2}} $}
+		
+		Antallet af frihedsgrader beregnes ved:
+		
+		\cent{$$ v = \frac{(s_1^2/n_1 + s_2^2/n_2)^2}{\frac{(s_1^2)^2}{n_1 - 1} + \frac{(s_2^2)^2}{n_2 - 1}} $$}
+		
+		\item Beregn p-værdien:
+		
+		\cent{\textit{p}-værdi  $ = 2 \cdot P(T > t_{obs})$}
+		
+		\item Sammenlign \textit{p}-værdi med nulhypotese og kritisk værdi:
+		
+		Hvis \textit{p}-værdien er mindre end den kritiske værdi $\alpha$ forkastes nulhypotesen, ellers accepteres den.
+		
+	\end{enumerate}
+	
 \end{document}
