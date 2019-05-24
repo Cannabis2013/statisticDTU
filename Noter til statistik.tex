@@ -767,12 +767,43 @@
 		
 		\item Beregn p-værdien:
 		
-		\cent{\textit{p}-værdi  $ = 2 \cdot P(T > t_{obs})$}
+		\cent{\textit{p}-værdi  $ = 2 \cdot P(T >  |t_{obs}|)$}
 		
 		\item Sammenlign \textit{p}-værdi med nulhypotese og kritisk værdi:
 		
-		Hvis \textit{p}-værdien er mindre end den kritiske værdi $\alpha$ forkastes nulhypotesen, ellers accepteres den.
+		Hvis \textit{p}-værdien er mindre end den kritiske værdi $\alpha$ forkastes nulhypotesen, ellers accepteres den. \\
+		
+		Ellers kan \textit{t}-statistikken sammenlignes direkte med kvartilværdierne for \textit{t}-fordelingen. Hvis $|t_{obs}| > t_{1-\alpha/2}$ kan nulhypotesen forkastes, ellers kan den accepteres.
 		
 	\end{enumerate}
+	
+	\subsubsection{Det dual-variable estimat af variansen}
+	
+	Under antagelsen at den egentlige varians\footnote{Her menes de to populationers varians $\sigma^2$} for to variabler er ens, kan denne beregnes ved:
+	
+	\cent{$$ s_p^2 =  \frac{(n_1 -1)s_1^2 + (n_2 -1)s_2^2}{n_1 +n_2 -2} $$}
+	
+	Vedrørende hypotese tests, under følgende nul hypotese:
+	
+	\cent{$ H_0 :  \script{S} = \mu_1 - \mu_2 = \script{S_0} $}
+		
+	så kan test størrelsen beregnes ved:
+	
+	\cent{$$ t_{obs} = \frac{(\bar{x_1} - \bar{x_2}) - \script{S}_0}{\sqrt{s_p^2/n_1 + s_p^2/n_2}} $$}
+	
+	Det kan også opstilles som en stokastisk variabel der antageligvis følger en \textit{t}-fordeling med $n_1 + n_2 -2$ frihedsgrader:
+	
+	\cent{$$ T = \frac{(\bar{X_1} - \bar{X_2}) - \script{S}_0}{\sqrt{S_p^2/n_1 + S_p^2/n_2}} $$}
+	
+	\subsubsection{Mere konfidens interval i relation til hypotese test af dual-variabel stikprøve}
+	
+	Man kan ud fra konfidens intervaller afgøre om der er statitistisk signifikans:
+	
+	\begin{itemize}
+		\item Overlapper konfidens intervallerne ikke hinanden kan man afgøre statitistis signifikans.
+		\item Hvis de overlapper må man ty til den sædvanlige metode for hypotese test af dual-variabel stikprøve.
+	\end{itemize}
+	
+	
 	
 \end{document}
